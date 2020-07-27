@@ -1,0 +1,36 @@
+from django.db import models
+
+
+# Create your models here.
+class PatientInformation(models.Model):
+    SEXCHOICES = [('female', 'female'), ('male', 'male')]
+    name = models.CharField(max_length=120, null=True)
+    patientRecordNumber = models.SlugField(max_length=11, null=True)
+    preferredName = models.CharField(max_length=120, blank=True, null=True)
+    dateOfBirth = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    ageAtSurgery = models.IntegerField(null=True)
+    patientSex = models.CharField(max_length=6, choices=SEXCHOICES, default='male')
+    siteCountry = models.CharField(max_length=120, null=True)
+    siteRegion = models.CharField(max_length=120, null=True)
+    hospitalName = models.TextField(null=True)
+    preoperativeDiagnostic1 = models.TextField(null=True)
+    preoperativeDiagnostic2 = models.TextField(blank=True, null=True)
+    preoperativeDiagnostic3 = models.TextField(blank=True, null=True)
+    preoperativeDiagnostic4 = models.TextField(blank=True, null=True)
+    burnInjury = models.BooleanField(default=False)
+    TBSA = models.FloatField(blank=True, null=True)
+    degreeOfBurn = models.IntegerField(blank=True, null=True)
+    causeOfBurn = models.TextField(blank=True, null=True)
+    approximateYearOfInjury = models.IntegerField(blank=True, null=True)
+    occupation = models.CharField(max_length=120, null=True)
+    patientAddress = models.TextField(null=True)
+    patientPhoneNumber = models.CharField(max_length=12, blank=True, null=True)
+    parentFirstName = models.CharField(max_length=120, blank=True, null=True)
+    parentMiddleName = models.CharField(max_length=120, blank=True, null=True)
+    parentLastName = models.CharField(max_length=120, blank=True, null=True)
+    relationshipToParent = models.CharField(max_length=120, blank=True, null=True)
+    uploadDate = models.DateField(auto_now=True, auto_now_add=False)
+    referral = models.CharField(max_length=120, blank=True, null=True)
+    patientWeight = models.IntegerField(null=True)
+    patientHeight = models.IntegerField(null=True)
+    currentMedication = models.TextField(blank=True, null=True)
