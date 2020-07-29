@@ -2,7 +2,21 @@
 {% load static %}
 
 {% block header %}
-<link rel="stylesheet" href="{% static 'homePage.css' %}">
+    <link rel="stylesheet" href="{% static 'homePage.css' %}">
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script>
+
+        $(document).ready(function (){
+            $('.search-patients').on('keyup', function() {
+                let information = $(this).val().toLowerCase();
+                $('.list-group li').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(information) > -1)
+                });
+            });
+        });
+
+    </script>
+    <title>TvachaCare</title>
 {% endblock %}
 
 {% block content %}
@@ -26,13 +40,13 @@
                             <input type="search" placeholder="Search for Patients..." class="search-patients" />
                             <ul class="list-group" style="color: #092327;font-family: Raleway, sans-serif;font-weight: bold;font-style: normal;text-align: left;padding-bottom: 15px;">
                                 {% for patients in object %}
-                                <li class="list-group-item"><a href="#" class='patient-name'>{{ patients.name }}</a></li>
+                                <li class="list-group-item"><a href="#" class='patient-name'>{{ patients.lastName }}, {{ patients.firstName }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="tab-3">
                             <div class="d-flex d-xl-flex flex-column align-items-center justify-content-xl-center align-items-xl-center" style="width: 100%;padding: 20px;">
-                                <img class="rounded-circle" src="{% static '/img/avatarTvachaCare.png' %}" width="30%" />
+                                <img class="rounded-circle" src="{% static '/img/avatarTvachaCare.png' %}" width="30%" alt="Profile Picture"/>
                                 <h2 style="color: #fc9c34;font-family: Raleway, sans-serif; margin-top: 20px;">[username]</h2>
                                 <hr>
                             <div class="row" style="width: 100%;">
@@ -70,4 +84,17 @@
         </div>
     </div>
 </main>
+
+    <script>
+
+        let patientList = $('.list-group');
+        let listItems = patientList.children($('.list-group-item')).get()
+        listItems.sort(function(a, b) {
+            let compA = $(a).text().toUpperCase();
+            let compB = $(b).text().toUpperCase();
+            return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+        })
+        $.each(patientList, function (idx, itm) { patientList.append(itm) });
+    </script>
+
 {% endblock %}

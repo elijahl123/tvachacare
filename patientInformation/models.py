@@ -4,7 +4,8 @@ from django.db import models
 # Create your models here.
 class PatientInformation(models.Model):
     SEXCHOICES = [('female', 'female'), ('male', 'male')]
-    name = models.CharField(max_length=120, null=True)
+    firstName = models.CharField(max_length=120, null=True)
+    lastName = models.CharField(max_length=120, null=True)
     patientRecordNumber = models.SlugField(max_length=11, null=True)
     preferredName = models.CharField(max_length=120, blank=True, null=True)
     dateOfBirth = models.DateField(auto_now=False, auto_now_add=False, null=True)
