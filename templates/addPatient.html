@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <title>Add A Patient</title>
+    <link rel="stylesheet" href="{% static 'Responsive-Form.css' %}">
+{% endblock %}
+
+{% block content %}
+
+        <main>
+    <div class="container" style="background-color: white;padding: 50px 0;">
+        <div>
+            <h1 class="text-center" style="color: #fc9c34;margin-bottom: 20px;font-family: Raleway, sans-serif;">Add A Patient</h1>
+            <form class="d-flex">
+                <div class="form-group" style="width: 100%;">
+                    <div id="formdiv" style="color: #fc9c34;font-family: Raleway, sans-serif;">
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>First Name</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="name" placeholder="First Name" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Last Name</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="name" placeholder="Last Name" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Patient Record Number</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="name" placeholder="Patient Record Number" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label">
+                                    <strong>Preferred Name</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="name" placeholder="Preferred Name" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Date of Birth</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input class="form-control" name="birthDate" type="date" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Age at Surgery</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="number" class="form-control" placeholder="Age" min="0" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Patient Sex</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><select class="form-control" name="gender"><option value selected>Male</option><option value>Female</option></select></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Site Country</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><select class="form-control" name="gender"></select></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Site Region</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="name" placeholder="Site Region" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Hospital Name</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Hospital Name"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Preoperative Diagnostic 1</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Preoperative Diagnostic 1"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Preoperative Diagnostic 2</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Preoperative Diagnostic 2"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Preoperative Diagnostic 3</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Preoperative Diagnostic 3"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Preoperative Diagnostic 4</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Preoperative Diagnostic 4"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-10 offset-md-1">
+                                <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-1" /><label class="form-check-label" for="formCheck-1">Burn Injury?</label></div>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>TBSA</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="number" class="form-control" placeholder="TBSA" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Degree Of Burn</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="number" class="form-control" placeholder="Degree of Burn" min="1" max="3" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Cause of Burn</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Cause of Burn"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Approximate Year of Injury</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="number" class="form-control" placeholder="Year" min="1900" name="approximateYearOfInjury" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Occupation</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="occupation" placeholder="Occupation" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Patient Address</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Address"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Patient Phone Number</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="occupation" placeholder="Phone Number" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Parent First Name</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="occupation" placeholder="First Name" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Parent Middle Name</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="occupation" placeholder="Middle Name" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Parent Last Name</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="occupation" placeholder="Last Name" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Relationship to Parent</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="occupation" placeholder="Relationship to Parent" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Referral</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="text" class="form-control" name="occupation" placeholder="Referral" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Patient Weight (kg)</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="number" class="form-control" placeholder="Weight" min="0" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Patient Height (cm)</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1">
+                                <input type="number" class="form-control" placeholder="Height" min="0" />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
+                            <div class="col-md-8 offset-md-1">
+                                <p class="paragraph-label"><strong>Current Medication</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-10 offset-md-1"><textarea class="form-control" placeholder="Medication"></textarea></div>
+                        </div>
+                        <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                    <div class="col-12 col-md-4 offset-md-4 d-flex justify-content-center">
+                            <button class="btn btn-danger btn-lg" style="font-family:Raleway, sans-serif;" type="reset">Clear </button>
+                            <button class="btn btn-success btn-lg" style="margin-left:16px;" type="submit">Submit </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

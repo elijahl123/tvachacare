@@ -16,5 +16,9 @@ def login(request):
     return render(request, 'login.html', {})
 
 
-def loginAdmin(request):
+def loginadmin(request):
     return render(request, 'loginAdmin.html', {})
+
+
+def addpatient(request):
+    return render(request, 'addPatient.html', {})
