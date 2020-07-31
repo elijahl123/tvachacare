@@ -4,6 +4,7 @@
 {% block header %}
     <title>Add A Patient</title>
     <link rel="stylesheet" href="{% static 'Responsive-Form.css' %}">
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,6 +16,26 @@
             <form class="d-flex">
                 <div class="form-group" style="width: 100%;">
                     <div id="formdiv" style="color: #fc9c34;font-family: Raleway, sans-serif;">
+                        <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                            <div class="col-md-10 offset-md-1" style="padding-bottom: 20px;">
+                                <div class="dashed_upload">
+                                    <div class="wrapper">
+                                        <div class="drop">
+                                            <div class="cont"><i class="fa fa-cloud-upload"></i>
+                                                <div class="tit">
+                                                    Drag &amp; Drop
+                                                </div>
+                                                <div class="desc">
+                                                    or
+                                                </div>
+                                                <div class="browse">
+                                                    click here to browse
+                                                </div>
+                                            </div><output id="list"></output><input id="files" multiple name="files[]" type="file" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
                             <div class="col-md-8 offset-md-1">
                                 <p class="paragraph-label"><strong>First Name</strong>
