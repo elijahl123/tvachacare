@@ -53,7 +53,7 @@ class MyAccountManager(BaseUserManager):
             email=self.normalize_email(email),
             username=username,
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
         )
 
         user.set_password(password)
@@ -85,7 +85,7 @@ class Account(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    profilePicturePath = models.TextField(null=True)
+    profile_picture_path = models.TextField(null=True, blank=True)
     first_name = models.CharField(max_length=20, null=True)
     last_name = models.CharField(max_length=20, null=True)
     group = models.CharField(max_length=10, choices=GROUPS, default='Admin')
