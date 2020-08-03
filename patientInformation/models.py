@@ -89,7 +89,6 @@ class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=20, null=True)
     last_name = models.CharField(max_length=20, null=True)
     group = models.CharField(max_length=10, choices=GROUPS, default='Admin')
-    is_approved = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
