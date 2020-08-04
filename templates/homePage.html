@@ -44,14 +44,26 @@
                 <div class="col">
                     <div>
                         <ul class="nav nav-pills nav-justified">
-                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link active" href="#tab-1"
-                                                    style="border-width: 1px;border-style: none;">Patients</a></li>
+                            {% if account.group == 'Approver' %}
+                                <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link active"
+                                                        href="#tab-1"
+                                                        style="border-width: 1px;border-style: none;">Awaiting
+                                    Approval</a></li>
+                            {% else %}
+                                <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link active"
+                                                        href="#tab-1"
+                                                        style="border-width: 1px;border-style: none;">Patients</a></li>
+                            {% endif %}
                             <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link"
                                                     href="#tab-3">Account</a></li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="tab-1" style="margin: 20px;">
-                                <h2 style="color: #092327;">Patients</h2>
+                                {% if account.group == 'Approver' %}
+                                    <h2 style="color: #092327;">Awaiting Approval</h2>
+                                {% else %}
+                                    <h2 style="color: #092327;">Patients</h2>
+                                {% endif %}
                                 <input type="search" placeholder="Search for Patients..." class="search-patients"/>
                                 <ul class="list-group"
                                     style="color: #092327;font-family: Raleway, sans-serif;font-weight: bold;font-style: normal;text-align: left;padding-bottom: 15px;">
@@ -63,25 +75,26 @@
                                 </ul>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="tab-3">
-                            <form method="post"
-                                                  class="col d-xl-flex flex-column justify-content-xl-center">{% csrf_token %}
-                                <div class="d-flex d-xl-flex flex-column align-items-center justify-content-xl-center align-items-xl-center"
-                                     style="width: 100%;padding: 20px;">
-                                    {% if account.profile_picture_path %}
-                                        <img class="rounded-circle"
-                                             src="{% static '' %}{{ account.profile_picture_path }}" width="30%"
-                                             alt="Profile Picture"/>
-                                    {% else %}
-                                        <img class="rounded-circle" src="{% static '/img/avatarTvachaCare.png' %}"
-                                             width="30%" alt="Profile Picture"/>
-                                    {% endif %}
-                                    <h2 class="form-span" style="color: #fc9c34;font-family: Raleway, sans-serif; margin-top: 20px;">{{ account.name }}</h2>
-                                    <input class="edit-input display-none" required type="text"
-                                                               placeholder="Username" name="username"
-                                                               value="{{ account.name }}" style="width: auto; margin-top: 20px" />
-                                    <hr>
-                                    <div class="row" style="width: 100%;">
-                                        <div class="col d-xl-flex flex-column justify-content-xl-center">
+                                <form method="post"
+                                      class="col d-xl-flex flex-column justify-content-xl-center">{% csrf_token %}
+                                    <div class="d-flex d-xl-flex flex-column align-items-center justify-content-xl-center align-items-xl-center"
+                                         style="width: 100%;padding: 20px;">
+                                        {% if account.profile_picture_path %}
+                                            <img class="rounded-circle"
+                                                 src="{% static '' %}{{ account.profile_picture_path }}" width="30%"
+                                                 alt="Profile Picture"/>
+                                        {% else %}
+                                            <img class="rounded-circle" src="{% static '/img/avatarTvachaCare.png' %}"
+                                                 width="30%" alt="Profile Picture"/>
+                                        {% endif %}
+                                        <h2 class="form-span"
+                                            style="color: #fc9c34;font-family: Raleway, sans-serif; margin-top: 20px;">{{ account.name }}</h2>
+                                        <input class="edit-input display-none" required type="text"
+                                               placeholder="Username" name="username"
+                                               value="{{ account.name }}" style="width: auto; margin-top: 20px"/>
+                                        <hr>
+                                        <div class="row" style="width: 100%;">
+                                            <div class="col d-xl-flex flex-column justify-content-xl-center">
                                                 <ul class="list-group" style="border-style: none;">
                                                     <li class="list-group-item d-lg-flex flex-row justify-content-between align-items-lg-center"
                                                         style="border-style: none;width: 100%;">
@@ -146,10 +159,10 @@
                                                         Changes
                                                     </button>
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
                             </div>
                         </div>
                     </div>

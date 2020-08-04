@@ -20,6 +20,7 @@ def index(request):
         "first_name": request.user.first_name,
         "last_name": request.user.last_name,
         "profile_picture_path": request.user.profile_picture_path,
+        'group': request.user.group
     } if request.user.is_authenticated else None
 
     if not request.user.is_authenticated:
@@ -84,11 +85,15 @@ def addpatient(request):
         "first_name": request.user.first_name,
         "last_name": request.user.last_name,
         "profile_picture_path": request.user.profile_picture_path,
+        'group': request.user.group
     } if request.user.is_authenticated else None
     context = {
         "account": account,
     }
     if request.user.is_authenticated:
-        return render(request, 'addPatient.html', context)
+        if request.user.group == 'Data Entry':
+            return render(request, 'addPatient.html', context)
+        else:
+            return redirect('home')
     else:
         return redirect('login')

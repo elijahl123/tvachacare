@@ -18,7 +18,7 @@
     {% block header %}
     {% endblock %}
 </head>
-<body style="background-color: #128807" , class="{% block bodyclass %}{% endblock %}">
+<body style="background-color: #128807" class="{% block bodyclass %}{% endblock %}">
 
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white d-flex d-xl-flex align-items-center align-items-xl-end clean-navbar"
      style="color: white !important;background-color: #092327 !important;position: relative;">
@@ -35,12 +35,16 @@
             <ul class="nav navbar-nav d-xl-flex ml-auto align-items-xl-center">
                 {% if account %}
                     <li class="nav-item" role="presentation" style="padding-right: 0;">
-                        <a class="nav-link active" href="{% url 'home' %}" style="font-family: Open Sans;color: white;">Home</a>
+                        <a class="nav-link active" href="{% url 'home' %}"
+                           style="font-family: Open Sans,sans-serif;color: white;">Home</a>
                     </li>
-                    <li class="nav-item" role="presentation" style="padding-right: 0;">
-                        <a class="nav-link" href="{% url 'addPatient' %}" style="font-family: Open Sans;color: white;">Add
-                            patient</a>
-                    </li>
+                    {% if account.group == 'Data Entry' %}
+                        <li class="nav-item" role="presentation" style="padding-right: 0;">
+                            <a class="nav-link" href="{% url 'addPatient' %}"
+                               style="font-family: Open Sans,sans-serif;color: white;">Add
+                                patient</a>
+                        </li>
+                    {% endif %}
                     <li role="presentation" class="nav-item" style="padding-right: 0;">
                         <a class="btn text-white log-out" href="{% url 'logout' %}"
                            style="font-size: 16px;font-family: 'Open Sans', sans-serif;font-weight: bold;border: 2px solid white;">Log
