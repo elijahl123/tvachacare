@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+
 from .models import PatientInformation, Account
 
+
 # Register your models here.
-admin.site.register(PatientInformation)
 
 
 class AccountAdmin(UserAdmin):
@@ -16,4 +17,15 @@ class AccountAdmin(UserAdmin):
     fieldsets = ()
 
 
+class PatientAdmin(admin.ModelAdmin):
+    list_display = ('firstName', 'lastName', 'patientRecordNumber', 'ageAtSurgery')
+    search_fields = ('firstName', 'lastName', 'patientRecordNumber')
+    readonly_fields = ()
+
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+
+
 admin.site.register(Account, AccountAdmin)
+admin.site.register(PatientInformation, PatientAdmin)
