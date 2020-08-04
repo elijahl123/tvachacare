@@ -36,6 +36,7 @@ class PatientInformation(models.Model):
     patientWeight = models.IntegerField(null=True)
     patientHeight = models.IntegerField(null=True)
     currentMedication = models.TextField(blank=True, null=True)
+    is_approved = models.BooleanField(default=False, blank=True, null=True)
 
 
 class MyAccountManager(BaseUserManager):
