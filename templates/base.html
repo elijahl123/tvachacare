@@ -44,6 +44,12 @@
                                style="font-family: Open Sans,sans-serif;color: white;">Add
                                 patient</a>
                         </li>
+                    {% elif account.is_superuser == True %}
+                        {% load admin_urls %}
+                        <li class="nav-item" role="presentation" style="padding-right: 0;">
+                            <a class="nav-link" href="{% url 'admin:index' %}"
+                               style="font-family: Open Sans,sans-serif;color: white;">Admin Console</a>
+                        </li>
                     {% endif %}
                     <li role="presentation" class="nav-item" style="padding-right: 0;">
                         <a class="btn text-white log-out" href="{% url 'logout' %}"

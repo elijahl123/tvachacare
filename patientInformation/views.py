@@ -20,7 +20,8 @@ def index(request):
         "first_name": request.user.first_name,
         "last_name": request.user.last_name,
         "profile_picture_path": request.user.profile_picture_path,
-        'group': request.user.group
+        'group': request.user.group,
+        'is_superuser': request.user.is_superuser
     } if request.user.is_authenticated else None
 
     if not request.user.is_authenticated:
@@ -85,7 +86,7 @@ def addpatient(request):
         "first_name": request.user.first_name,
         "last_name": request.user.last_name,
         "profile_picture_path": request.user.profile_picture_path,
-        'group': request.user.group
+        'group': request.user.group,
     } if request.user.is_authenticated else None
     context = {
         "account": account,

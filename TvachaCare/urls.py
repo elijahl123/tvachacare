@@ -19,7 +19,7 @@ from django.urls import path
 from patientInformation import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin-console'),
     path('', views.index, name='home'),
     path('login/', views.loginPage, name="login"),
     path('login/admin/', views.loginadmin, name="loginAdmin"),
