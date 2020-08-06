@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth import logout as lgout, authenticate, login
+from django.shortcuts import render, redirect
 
 from .forms import AccountAuthenticationForm, AccountUpdateForm
-from .models import PatientInformation, Account
+from .models import PatientInformation
 
 
 # Create your views here.
@@ -96,5 +96,20 @@ def addpatient(request):
             return render(request, 'addPatient.html', context)
         else:
             return redirect('home')
+    else:
+        return redirect('login')
+
+
+def patient_page(request):
+    account = {
+        "id": request.user.id,
+        "name": request.user.username,
+        "email": request.user.email
+    } if request.user.is_authenticated else None
+    context = {
+        "account": account,
+    }
+    if request.user.is_authenticated:
+        return render(request, 'patient_page.html', context)
     else:
         return redirect('login')

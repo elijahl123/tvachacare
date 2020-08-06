@@ -24,5 +24,6 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('login/admin/', views.loginadmin, name="loginAdmin"),
     path('addpatient/', views.addpatient, name='addPatient'),
-    path('logout', views.logout, name='logout')
+    path('logout', views.logout, name='logout'),
+    path('patient_page', views.patient_page, name='patient_page')
 ]

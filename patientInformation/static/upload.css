@@ -13,14 +13,13 @@ input:focus, select:focus, textarea:focus, button:focus {
   border-radius: 15px;
   overflow: hidden;
   text-align: center;
-  background: transparent;
+  background: #FC9C34;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
   margin-top: 0px;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 10px;
   position: absolute;
   top: 0;
   left: 0;
@@ -54,20 +53,21 @@ input:focus, select:focus, textarea:focus, button:focus {
   text-transform: uppercase;
   font-weight: 100;
   font-family: 'Raleway';
+  color: white;
 }
 
 .drop .cont .desc {
-  color: #fc9c34;
+  color: white;
   font-size: 18px;
   font-family: 'Raleway';
 }
 
 .drop .cont .browse {
   margin: 10px 25%;
-  color: white;
+  color: #FC9C34;
   padding: 8px 16px;
   border-radius: 4px;
-  background: #fc9c34;
+  background: white;
   font-family: 'Open Sans';
 }
 

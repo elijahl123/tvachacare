@@ -1,5 +1,15 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.db.models.signals import post_delete, pre_save
+from django.dispatch import receiver
+from django.utils.text import slugify
+
+
+def upload_location(instance, filename):
+    file_path = 'patientInformation/{lastName}-{firstName}/{patientRecordNumber}-{filename}'.format(
+        lastName=str(instance.lastName), firstName=str(instance.firstName),
+        patientRecordNumber=str(instance.patientRecordNumber), filename=filename)
+    return file_path
 
 
 # Create your models here.
@@ -7,7 +17,7 @@ class PatientInformation(models.Model):
     SEXCHOICES = [('female', 'female'), ('male', 'male')]
     firstName = models.CharField(max_length=120, null=True)
     lastName = models.CharField(max_length=120, null=True)
-    patientRecordNumber = models.SlugField(max_length=11, null=True)
+    patientRecordNumber = models.SlugField(max_length=11, null=True, unique=True)
     preferredName = models.CharField(max_length=120, blank=True, null=True)
     dateOfBirth = models.DateField(auto_now=False, auto_now_add=False, null=True)
     ageAtSurgery = models.IntegerField(null=True)
@@ -36,6 +46,10 @@ class PatientInformation(models.Model):
     patientWeight = models.IntegerField(null=True)
     patientHeight = models.IntegerField(null=True)
     currentMedication = models.TextField(blank=True, null=True)
+    image1 = models.ImageField(upload_to=upload_location, null=True, blank=True)
+    image2 = models.ImageField(upload_to=upload_location, null=True, blank=True)
+    image3 = models.ImageField(upload_to=upload_location, null=True, blank=True)
+    slug = models.SlugField(blank=True, unique=True)
     is_approved = models.BooleanField(default=False, blank=True, null=True)
 
 
@@ -109,3 +123,15 @@ class Account(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+
+@receiver(post_delete, sender=PatientInformation)
+def submission_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
+
+
+def pre_save_patient_information_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = slugify(instance.patientRecordNumber)
+
+
+pre_save.connect(pre_save_patient_information_receiver, sender=PatientInformation)

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate
 
-from .models import Account
+from .models import Account, PatientInformation
 
 
 class AccountAuthenticationForm(forms.ModelForm):
@@ -51,3 +51,43 @@ class AccountUpdateForm(forms.ModelForm):
         if self.is_valid():
             last_name = self.cleaned_data['last_name']
             return last_name
+
+
+class AddPatient(forms.ModelForm):
+    class Meta:
+        model = PatientInformation
+        fields = (
+            'firstName',
+            'lastName',
+            'patientRecordNumber',
+            'preferredName',
+            'dateOfBirth',
+            'ageAtSurgery',
+            'patientSex',
+            'siteCountry',
+            'siteRegion',
+            'hospitalName',
+            'preoperativeDiagnostic1',
+            'preoperativeDiagnostic2',
+            'preoperativeDiagnostic3',
+            'preoperativeDiagnostic4',
+            'burnInjury',
+            'TBSA',
+            'degreeOfBurn',
+            'causeOfBurn',
+            'approximateYearOfInjury',
+            'occupation',
+            'patientAddress',
+            'patientPhoneNumber',
+            'parentFirstName',
+            'parentMiddleName',
+            'parentLastName',
+            'relationshipToParent',
+            'referral',
+            'patientWeight',
+            'patientHeight',
+            'currentMedication',
+            'image1',
+            'image2',
+            'image3',
+        )
