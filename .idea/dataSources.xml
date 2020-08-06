@@ -9,5 +9,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:25565/TvachaCare</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="postgres" uuid="278d43e7-ab77-4046-b9ee-e3b01d0384bc">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:25565/postgres</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -89,5 +89,5 @@ class AddPatient(forms.ModelForm):
             'currentMedication',
             'image1',
             'image2',
-            'image3',
+            'image3'
         )

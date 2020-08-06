@@ -9,23 +9,29 @@
 
 {% block content %}
 
+
+
+
     <main>
         <div class="container" style="background-color: white;padding: 50px 0;">
             <div>
                 <h1 class="text-center" style="color: #fc9c34;margin-bottom: 20px;font-family: Raleway, sans-serif;">Add
                     A Patient</h1>
-                <form class="d-flex" method="post">
+                <form class="d-flex" method="post">{% csrf_token %}
                     <div class="form-group" style="width: 100%;">
                         <div id="formdiv" style="color: #fc9c34;font-family: Raleway, sans-serif;">
                             <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                 <div class="col-md-10 offset-md-1" style="padding-bottom: 20px;">
-                                    <div id="Div_Promo_Carousel" class="carousel slide">
+                                    <div id="Div_Promo_Carousel" class="carousel">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="d-xl-flex justify-content-xl-center align-items-xl-center carousel-item active">
                                                 <div class="dashed_upload">
                                                     <div class="wrapper">
                                                         <div class="drop">
-                                                            <div class="cont"><i class="fa fa-cloud-upload"></i>
+                                                            <img id="output1"
+                                                                 style="max-width: 60%;max-height: 60%;border-radius: 20px; margin-top: 5%;"/>
+                                                            <div class="cont" id="cont1"><i
+                                                                    class="fa fa-cloud-upload"></i>
                                                                 <div class="tit">
                                                                     Drag &amp; Drop
                                                                 </div>
@@ -37,7 +43,8 @@
                                                                 </div>
                                                             </div>
                                                             <output id="list"></output>
-                                                            <input id="files" name="files[]" type="file"/></div>
+                                                            <input accept="image/*" id="files" name="image1"
+                                                                   type="file" onchange="loadFile1(event)"/></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,7 +52,10 @@
                                                 <div class="dashed_upload">
                                                     <div class="wrapper">
                                                         <div class="drop">
-                                                            <div class="cont"><i class="fa fa-cloud-upload"></i>
+                                                            <img id="output2"
+                                                                 style="max-width: 60%;max-height: 60%;border-radius: 20px; margin-top: 5%;"/>
+                                                            <div class="cont" id="cont2"><i
+                                                                    class="fa fa-cloud-upload"></i>
                                                                 <div class="tit">
                                                                     Drag &amp; Drop
                                                                 </div>
@@ -57,7 +67,8 @@
                                                                 </div>
                                                             </div>
                                                             <output id="list"></output>
-                                                            <input id="files" name="files[]" type="file"/></div>
+                                                            <input accept="image/*" id="files" name="image2"
+                                                                   type="file" onchange="loadFile2(event)"/></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,7 +76,10 @@
                                                 <div class="dashed_upload">
                                                     <div class="wrapper">
                                                         <div class="drop">
-                                                            <div class="cont"><i class="fa fa-cloud-upload"></i>
+                                                            <img id="output3"
+                                                                 style="max-width: 60%;max-height: 60%;border-radius: 20px; margin-top: 5%;"/>
+                                                            <div class="cont" id="cont3"><i
+                                                                    class="fa fa-cloud-upload"></i>
                                                                 <div class="tit">
                                                                     Drag &amp; Drop
                                                                 </div>
@@ -77,26 +91,49 @@
                                                                 </div>
                                                             </div>
                                                             <output id="list"></output>
-                                                            <input id="files" name="files[]" type="file"/></div>
+                                                            <input accept="image/*" id="files" name="image3"
+                                                                   type="file" onchange="loadFile3(event)"/></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <script>
+                                            let loadFile1 = function (event) {
+                                                let image = document.getElementById('output1');
+                                                image.src = URL.createObjectURL(event.target.files[0]);
+                                                $("#cont1").addClass('invisible');
+                                                $('.carousel').carousel('pause');
+                                            };
+                                            let loadFile2 = function (event) {
+                                                let image = document.getElementById('output2');
+                                                image.src = URL.createObjectURL(event.target.files[0]);
+                                                $("#cont2").addClass('invisible');
+                                                $('.carousel').carousel('pause');
+                                            };
+                                            let loadFile3 = function (event) {
+                                                let image = document.getElementById('output3');
+                                                image.src = URL.createObjectURL(event.target.files[0]);
+                                                $("#cont3").addClass('invisible');
+                                                $('.carousel').carousel('pause');
+                                            };
+                                        </script>
                                         <div><a class="carousel-control-prev" role="button" data-slide="prev"
-                                                href="#Div_Promo_Carousel"><span class="carousel-control-prev-icon"
-                                                                                 aria-hidden="true"></span><span
+                                                href="#Div_Promo_Carousel"><span
+                                                class="carousel-control-prev-icon"
+                                                aria-hidden="true"></span><span
                                                 class="sr-only">Prev </span></a><a class="carousel-control-next"
                                                                                    role="button"
                                                                                    data-slide="next"
                                                                                    href="#Div_Promo_Carousel"><span
-                                                class="carousel-control-next-icon" aria-hidden="true"></span><span
+                                                class="carousel-control-next-icon"
+                                                aria-hidden="true"></span><span
                                                 class="sr-only">Next </span></a></div>
                                         <ul class="carousel-indicators" role>
-                                            <li class="active" data-slide-to="0" data-target="#Div_Promo_Carousel">Item
-                                                1
+                                            <li class="active" data-slide-to="0"
+                                                data-target="#Div_Promo_Carousel">
                                             </li>
-                                            <li data-slide-to="1" data-target="#Div_Promo_Carousel">Item 1</li>
-                                            <li data-slide-to="2" data-target="#Div_Promo_Carousel">Item 1</li>
+                                            <li data-slide-to="1" data-target="#Div_Promo_Carousel"></li>
+                                            <li data-slide-to="2" data-target="#Div_Promo_Carousel"></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -107,8 +144,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="name" placeholder="First Name"
-                                           value="firstName" />
+                                    <input type="text" class="form-control" name="firstName"
+                                           placeholder="First Name" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -117,7 +154,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="name" placeholder="Last Name"/>
+                                    <input type="text" class="form-control" name="lastname"
+                                           placeholder="Last Name" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -126,8 +164,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="name"
-                                           placeholder="Patient Record Number"/>
+                                    <input type="text" class="form-control" name="patientRecordNumber"
+                                           placeholder="Patient Record Number" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -137,7 +175,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="name" placeholder="Preferred Name"/>
+                                    <input type="text" class="form-control" name="preferredName"
+                                           placeholder="Preferred Name"/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -146,7 +185,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input class="form-control" name="birthDate" type="date"/>
+                                    <input class="form-control" name="dateOfBirth" type="date" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -155,7 +194,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="number" class="form-control" placeholder="Age" min="0"/>
+                                    <input type="number" class="form-control" placeholder="Age" min="0"
+                                           name="ageAtSurgery" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -163,7 +203,8 @@
                                     <p class="paragraph-label"><strong>Patient Sex</strong>
                                     </p>
                                 </div>
-                                <div class="col-md-10 offset-md-1"><select class="form-control" name="gender">
+                                <div class="col-md-10 offset-md-1"><select class="form-control"
+                                                                           name="patientSex" >
                                     <option value selected>Male</option>
                                     <option value>Female</option>
                                 </select></div>
@@ -173,8 +214,9 @@
                                     <p class="paragraph-label"><strong>Site Country</strong>
                                     </p>
                                 </div>
-                                <div class="col-md-10 offset-md-1"><input class="form-control" name="siteCountry"
-                                                                          placeholder="Site Country">
+                                <div class="col-md-10 offset-md-1"><input class="form-control"
+                                                                          name="siteCountry"
+                                                                          placeholder="Site Country" required>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -183,7 +225,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="name" placeholder="Site Region"/>
+                                    <input type="text" class="form-control" name="siteRegion"
+                                           placeholder="Site Region" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -192,7 +235,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1"><textarea class="form-control"
-                                                                             placeholder="Hospital Name"></textarea>
+                                                                             required placeholder="Hospital Name"
+                                                                             name="hospitalName"></textarea>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -201,7 +245,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <textarea class="form-control" placeholder="Preoperative Diagnostic 1"></textarea>
+                                    <textarea class="form-control" name="preoperativeDiagnostic1"
+                                              placeholder="Preoperative Diagnostic 1" required></textarea>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -210,7 +255,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <textarea class="form-control" placeholder="Preoperative Diagnostic 2"></textarea>
+                                    <textarea class="form-control" name="preoperativeDiagnostic2"
+                                              placeholder="Preoperative Diagnostic 2"></textarea>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -219,7 +265,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <textarea class="form-control" placeholder="Preoperative Diagnostic 3"></textarea>
+                                    <textarea class="form-control" name="preoperativeDiagnostic3"
+                                              placeholder="Preoperative Diagnostic 3"></textarea>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -228,13 +275,15 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <textarea class="form-control" placeholder="Preoperative Diagnostic 4"></textarea>
+                                    <textarea class="form-control" name="preoperativeDiagnostic4"
+                                              placeholder="Preoperative Diagnostic 4"></textarea>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
                                 <div class="col-md-10 offset-md-1">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="formCheck-1"/>
+                                        <input type="checkbox" name="burnInjury" class="form-check-input"
+                                               id="formCheck-1"/>
                                         <label class="form-check-label" for="formCheck-1">Burn Injury?</label>
                                     </div>
                                 </div>
@@ -245,7 +294,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="number" class="form-control" placeholder="TBSA"/>
+                                    <input type="number" class="form-control" placeholder="TBSA" name="TBSA"/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -254,8 +303,9 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="number" class="form-control" placeholder="Degree of Burn" min="1"
-                                           max="3"/>
+                                    <input type="number" class="form-control" placeholder="Degree of Burn"
+                                           min="1"
+                                           max="3" name="degreeOfBurn"/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -264,7 +314,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1"><textarea class="form-control"
-                                                                             placeholder="Cause of Burn"></textarea>
+                                                                             placeholder="Cause of Burn"
+                                                                             name="causeOfBurn"></textarea>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -283,7 +334,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="occupation" placeholder="Occupation"/>
+                                    <input type="text" class="form-control" name="occupation"
+                                           placeholder="Occupation" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -292,7 +344,9 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1"><textarea class="form-control"
-                                                                             placeholder="Address"></textarea></div>
+                                                                             required placeholder="Address"
+                                                                             name="patientAddress"></textarea>
+                                </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
                                 <div class="col-md-8 offset-md-1">
@@ -300,8 +354,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="occupation"
-                                           placeholder="Phone Number"/>
+                                    <input type="text" class="form-control" name="patientPhoneNumber"
+                                           placeholder="Phone Number" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -310,7 +364,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="occupation" placeholder="First Name"/>
+                                    <input type="text" class="form-control" name="parentFirstName"
+                                           placeholder="First Name"/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -319,7 +374,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="occupation"
+                                    <input type="text" class="form-control" name="parentMiddleName"
                                            placeholder="Middle Name"/>
                                 </div>
                             </div>
@@ -329,7 +384,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="occupation" placeholder="Last Name"/>
+                                    <input type="text" class="form-control" name="parentLastName"
+                                           placeholder="Last Name"/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -338,7 +394,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="occupation"
+                                    <input type="text" class="form-control" name="relationshipToPatient"
                                            placeholder="Relationship to Parent"/>
                                 </div>
                             </div>
@@ -348,7 +404,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="occupation" placeholder="Referral"/>
+                                    <input type="text" class="form-control" name="referral"
+                                           placeholder="Referral"/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -357,7 +414,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="number" class="form-control" placeholder="Weight" min="0"/>
+                                    <input type="number" class="form-control" placeholder="Weight" min="0"
+                                           name="patientWeight" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -366,7 +424,8 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="number" class="form-control" placeholder="Height" min="0"/>
+                                    <input type="number" class="form-control" placeholder="Height" min="0"
+                                           name="patientHeight" required/>
                                 </div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -375,14 +434,18 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1"><textarea class="form-control"
-                                                                             placeholder="Medication"></textarea></div>
+                                                                             placeholder="Medication"
+                                                                             name="currentMedication"></textarea>
+                                </div>
                             </div>
                             <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                 <div class="col-12 col-md-4 offset-md-4 d-flex justify-content-center">
-                                    <button class="btn btn-danger btn-lg" style="font-family:Raleway, sans-serif;"
+                                    <button class="btn btn-danger btn-lg"
+                                            style="font-family:Raleway, sans-serif;"
                                             type="reset">Clear
                                     </button>
-                                    <button class="btn btn-success btn-lg" style="margin-left:16px;" type="submit">
+                                    <button class="btn btn-success btn-lg" style="margin-left:16px;"
+                                            type="submit">
                                         Submit
                                     </button>
                                 </div>

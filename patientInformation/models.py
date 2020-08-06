@@ -14,7 +14,7 @@ def upload_location(instance, filename):
 
 # Create your models here.
 class PatientInformation(models.Model):
-    SEXCHOICES = [('female', 'female'), ('male', 'male')]
+    SEXCHOICES = [('Female', 'Female'), ('Male', 'Male')]
     firstName = models.CharField(max_length=120, null=True)
     lastName = models.CharField(max_length=120, null=True)
     patientRecordNumber = models.SlugField(max_length=11, null=True, unique=True)
@@ -49,7 +49,7 @@ class PatientInformation(models.Model):
     image1 = models.ImageField(upload_to=upload_location, null=True, blank=True)
     image2 = models.ImageField(upload_to=upload_location, null=True, blank=True)
     image3 = models.ImageField(upload_to=upload_location, null=True, blank=True)
-    slug = models.SlugField(blank=True, unique=True)
+    slug = models.SlugField(blank=True, unique=True, null=True)
     is_approved = models.BooleanField(default=False, blank=True, null=True)
 
 
