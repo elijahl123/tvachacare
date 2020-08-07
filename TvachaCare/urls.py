@@ -27,7 +27,7 @@ urlpatterns = [
     path('login/admin/', views.loginadmin, name="loginAdmin"),
     path('addpatient/', views.addpatient, name='addPatient'),
     path('logout', views.logout, name='logout'),
-    path('patient_page', views.patient_page, name='patient_page')
+    path('patient/<slug>/', views.patient_page, name='patient_page')
 ]
 
 if settings.DEBUG:

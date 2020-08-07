@@ -22,7 +22,7 @@ class AccountAuthenticationForm(forms.ModelForm):
 class AccountUpdateForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ('email', 'username', 'first_name', 'last_name')
+        fields = ('email', 'username', 'first_name', 'last_name', 'profile_picture_path')
 
     def clean_email(self):
         if self.is_valid():
@@ -56,7 +56,7 @@ class AccountUpdateForm(forms.ModelForm):
 class AddPatient(forms.ModelForm):
     class Meta:
         model = PatientInformation
-        fields = (
+        fields = [
             'firstName',
             'lastName',
             'patientRecordNumber',
@@ -90,4 +90,4 @@ class AddPatient(forms.ModelForm):
             'image1',
             'image2',
             'image3'
-        )
+        ]

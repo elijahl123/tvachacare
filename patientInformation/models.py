@@ -7,44 +7,49 @@ from django.utils.text import slugify
 
 def upload_location(instance, filename):
     file_path = 'patientInformation/{patientRecordNumber}/{filename}'.format(
-        lastName=str(instance.lastName), firstName=str(instance.firstName),
         patientRecordNumber=str(instance.patientRecordNumber), filename=filename)
+    return file_path
+
+
+def upload_profile_picture(instance, filename):
+    file_path = 'profilePictures/{username}/{filename}'.format(
+        username=str(instance.username), filename=filename
+    )
     return file_path
 
 
 # Create your models here.
 class PatientInformation(models.Model):
     SEXCHOICES = [('Female', 'Female'), ('Male', 'Male')]
-    firstName = models.CharField(max_length=120, null=True)
-    lastName = models.CharField(max_length=120, null=True)
-    patientRecordNumber = models.SlugField(max_length=11, null=True, unique=True)
+    firstName = models.CharField(blank=True, max_length=120, null=True)
+    lastName = models.CharField(blank=True, max_length=120, null=True)
+    patientRecordNumber = models.SlugField(blank=True, max_length=11, null=True, unique=True)
     preferredName = models.CharField(max_length=120, blank=True, null=True)
-    dateOfBirth = models.DateField(auto_now=False, auto_now_add=False, null=True)
-    ageAtSurgery = models.IntegerField(null=True)
-    patientSex = models.CharField(max_length=6, choices=SEXCHOICES, default='male')
-    siteCountry = models.CharField(max_length=120, null=True)
-    siteRegion = models.CharField(max_length=120, null=True)
-    hospitalName = models.TextField(null=True)
-    preoperativeDiagnostic1 = models.TextField(null=True)
+    dateOfBirth = models.DateField(blank=True, auto_now=False, auto_now_add=False, null=True)
+    ageAtSurgery = models.IntegerField(blank=True, null=True)
+    patientSex = models.CharField(blank=True, max_length=6, choices=SEXCHOICES, default='male')
+    siteCountry = models.CharField(blank=True, max_length=120, null=True)
+    siteRegion = models.CharField(blank=True, max_length=120, null=True)
+    hospitalName = models.TextField(blank=True, null=True)
+    preoperativeDiagnostic1 = models.TextField(blank=True, null=True)
     preoperativeDiagnostic2 = models.TextField(blank=True, null=True)
     preoperativeDiagnostic3 = models.TextField(blank=True, null=True)
     preoperativeDiagnostic4 = models.TextField(blank=True, null=True)
-    burnInjury = models.BooleanField(default=False)
+    burnInjury = models.BooleanField(blank=True, null=True, default=False)
     TBSA = models.FloatField(blank=True, null=True)
     degreeOfBurn = models.IntegerField(blank=True, null=True)
     causeOfBurn = models.TextField(blank=True, null=True)
     approximateYearOfInjury = models.IntegerField(blank=True, null=True)
-    occupation = models.CharField(max_length=120, null=True)
-    patientAddress = models.TextField(null=True)
+    occupation = models.CharField(blank=True, max_length=120, null=True)
+    patientAddress = models.TextField(blank=True, null=True)
     patientPhoneNumber = models.CharField(max_length=12, blank=True, null=True)
     parentFirstName = models.CharField(max_length=120, blank=True, null=True)
     parentMiddleName = models.CharField(max_length=120, blank=True, null=True)
     parentLastName = models.CharField(max_length=120, blank=True, null=True)
     relationshipToParent = models.CharField(max_length=120, blank=True, null=True)
-    uploadDate = models.DateField(auto_now=True, auto_now_add=False)
     referral = models.CharField(max_length=120, blank=True, null=True)
-    patientWeight = models.IntegerField(null=True)
-    patientHeight = models.IntegerField(null=True)
+    patientWeight = models.IntegerField(blank=True, null=True)
+    patientHeight = models.IntegerField(blank=True, null=True)
     currentMedication = models.TextField(blank=True, null=True)
     image1 = models.ImageField(upload_to=upload_location, null=True, blank=True)
     image2 = models.ImageField(upload_to=upload_location, null=True, blank=True)
@@ -103,7 +108,7 @@ class Account(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    profile_picture_path = models.TextField(null=True, blank=True)
+    profile_picture_path = models.ImageField(upload_to=upload_profile_picture, null=True, blank=True)
     first_name = models.CharField(max_length=20, null=True)
     last_name = models.CharField(max_length=20, null=True)
     group = models.CharField(max_length=10, choices=GROUPS, default='Admin')
@@ -129,7 +134,9 @@ class Account(AbstractBaseUser):
 
 @receiver(post_delete, sender=PatientInformation)
 def submission_delete(sender, instance, **kwargs):
-    instance.image.delete(False)
+    instance.image1.delete(False)
+    instance.image2.delete(False)
+    instance.image3.delete(False)
 
 
 def pre_save_patient_information_receiver(sender, instance, *args, **kwargs):

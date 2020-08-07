@@ -27,6 +27,51 @@
             font-family: "Open Sans", sans-serif;
             width: 50%;
         }
+
+        .overlay-profile {
+            position: absolute;
+            display: flex;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: .3s ease;
+            background-color: #fff;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .overlay-profile:hover {
+            opacity: 0.7;
+        }
+
+        .overlay-profile input {
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .overlay-profile label {
+            cursor: pointer;
+        }
+
+        .overlay-profile i {
+            font-size: 21px;
+            cursor: pointer;
+            color: #fc9c34;
+        }
+
+        .container-profile-picture img {
+            width: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
     </style>
 {% endblock %}
 
@@ -65,14 +110,19 @@
                                     <h2 style="color: #092327;">Patients</h2>
                                 {% endif %}
                                 <input type="search" placeholder="Search for Patients..." class="search-patients"/>
-                                <ul class="list-group"
-                                    style="color: #092327;font-family: Raleway, sans-serif;font-weight: bold;font-style: normal;text-align: left;padding-bottom: 15px;">
-                                    {% for patients in object %}
-                                        <li class="list-group-item"><a href="#"
-                                                                       class='patient-name'>{{ patients.lastName }}, {{ patients.firstName }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                {% if object %}
+                                    <ul class="list-group"
+                                        style="color: #092327;font-family: Raleway, sans-serif;font-weight: bold;font-style: normal;text-align: left;padding-bottom: 15px;">
+                                        {% for patients in object %}
+                                            <li class="list-group-item">
+                                                <a href="{% url 'patient_page' patients.slug %}"
+                                                   class='patient-name'>{{ patients.lastName }}, {{ patients.firstName }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p class="m-auto">None</p>
+                                {% endif %}
                             </div>
                             <div role="tabpanel" class="tab-pane" id="tab-3">
                                 <form method="post"
@@ -80,12 +130,31 @@
                                     <div class="d-flex d-xl-flex flex-column align-items-center justify-content-xl-center align-items-xl-center"
                                          style="width: 100%;padding: 20px;">
                                         {% if account.profile_picture_path %}
-                                            <img class="rounded-circle"
-                                                 src="{% static '' %}{{ account.profile_picture_path }}" width="30%"
-                                                 alt="Profile Picture"/>
+                                            <div class="container-profile-picture" style="position: relative">
+                                                <img class="rounded-circle"
+                                                     src="{{ account.profile_picture_path.url }}" width="30%"
+                                                     alt="Profile Picture"/>
+                                                <div class="overlay-profile">
+                                                    <input accept="image/*" id="profile_files"
+                                                           type="file"
+                                                           style="position: absolute; opacity: 0; width: 100%; height: 100%"
+                                                           name="profile_picture_path">
+                                                    <label for="choose-file"><i class="fa fa-edit"></i></label>
+                                                </div>
+                                            </div>
                                         {% else %}
-                                            <img class="rounded-circle" src="{% static '/img/avatarTvachaCare.png' %}"
-                                                 width="30%" alt="Profile Picture"/>
+                                            <div class="container-profile-picture" style="position: relative">
+                                                <img class="rounded-circle"
+                                                     src="{% static '/img/avatarTvachaCare.png' %}" width="30%"
+                                                     alt="Profile Picture"/>
+                                                <div class="overlay-profile">
+                                                    <input accept="image/*" id="profile_files"
+                                                           type="file"
+                                                           style="position: absolute; opacity: 0; width: 100%; height: 100%"
+                                                           name="profile_picture_path">
+                                                    <label for="choose-file"><i class="fa fa-edit"></i></label>
+                                                </div>
+                                            </div>
                                         {% endif %}
                                         <h2 class="form-span"
                                             style="color: #fc9c34;font-family: Raleway, sans-serif; margin-top: 20px;">{{ account.name }}</h2>

@@ -1,5 +1,5 @@
 from django.contrib.auth import logout as lgout, authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import AccountAuthenticationForm, AccountUpdateForm, AddPatient
 from .models import PatientInformation
@@ -12,7 +12,11 @@ def logout(request):
 
 
 def index(request):
-    patient = PatientInformation.objects.all()
+    if request.user.is_authenticated:
+        if request.user.group == 'Approver':
+            patient = PatientInformation.objects.filter(is_approved=False)
+        else:
+            patient = PatientInformation.objects.all()
     account = {
         "id": request.user.id,
         "name": request.user.username,
@@ -43,6 +47,7 @@ def index(request):
                     'username': request.user.username,
                     'first_name': request.user.first_name,
                     'last_name': request.user.last_name,
+                    'profile_picture_path': request.user.profile_picture_path,
                 }
             )
         context['account_form'] = form
@@ -92,6 +97,23 @@ def addpatient(request):
         "account": account,
     }
 
+    form = AddPatient(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.save()
+        form = AddPatient()
+        return redirect('home')
+
+    context['form'] = form
+
+    if request.user.is_authenticated:
+        if request.user.group == 'Data Entry':
+            return render(request, 'addPatient.html', context)
+        else:
+            return redirect('home')
+    else:
+        return redirect('login')
+    '''
     if request.POST:
         form = AddPatient(request.POST)
         if form.is_valid():
@@ -156,17 +178,22 @@ def addpatient(request):
             return redirect('home')
     else:
         return redirect('login')
+    '''
 
 
-def patient_page(request):
+def patient_page(request, slug):
     account = {
         "id": request.user.id,
         "name": request.user.username,
-        "email": request.user.email
+        "email": request.user.email,
+        "is_superuser": request.user.is_superuser,
+        "group": request.user.group,
     } if request.user.is_authenticated else None
     context = {
         "account": account,
     }
+    patient = get_object_or_404(PatientInformation, slug=slug)
+    context['patient'] = patient
     if request.user.is_authenticated:
         return render(request, 'patient_page.html', context)
     else:

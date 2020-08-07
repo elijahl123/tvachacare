@@ -9,15 +9,12 @@
 
 {% block content %}
 
-
-
-
     <main>
         <div class="container" style="background-color: white;padding: 50px 0;">
             <div>
                 <h1 class="text-center" style="color: #fc9c34;margin-bottom: 20px;font-family: Raleway, sans-serif;">Add
                     A Patient</h1>
-                <form class="d-flex" method="post">{% csrf_token %}
+                <form class="d-flex" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div class="form-group" style="width: 100%;">
                         <div id="formdiv" style="color: #fc9c34;font-family: Raleway, sans-serif;">
                             <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
@@ -154,7 +151,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="lastname"
+                                    <input type="text" class="form-control" name="lastName"
                                            placeholder="Last Name" required/>
                                 </div>
                             </div>
@@ -204,9 +201,9 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1"><select class="form-control"
-                                                                           name="patientSex" >
-                                    <option value selected>Male</option>
-                                    <option value>Female</option>
+                                                                           name="patientSex">
+                                    <option value selected name="patientSex">Male</option>
+                                    <option value name="patientSex">Female</option>
                                 </select></div>
                             </div>
                             <div class="form-row" style="margin-right:0;margin-left:0;padding-top:24px;">
@@ -394,7 +391,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 offset-md-1">
-                                    <input type="text" class="form-control" name="relationshipToPatient"
+                                    <input type="text" class="form-control" name="relationshipToParent"
                                            placeholder="Relationship to Parent"/>
                                 </div>
                             </div>
@@ -450,6 +447,17 @@
                                     </button>
                                 </div>
                             </div>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <p style="color: red;">{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+
+                            {% if form.non_field_errors %}
+                                <div style="color:red;">
+                                    <p>{{ form.non_field_errors }}</p>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
