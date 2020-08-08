@@ -38,8 +38,6 @@ INSTALLED_APPS = [
 
     'patientInformation',
 
-    'image_optimizer',
-
 ]
 
 OPTIMIZED_IMAGE_METHOD = 'pillow'
