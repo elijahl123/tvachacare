@@ -27,7 +27,7 @@ class PatientInformation(models.Model):
     preferredName = models.CharField(max_length=120, blank=True, null=True)
     dateOfBirth = models.DateField(blank=True, auto_now=False, auto_now_add=False, null=True)
     ageAtSurgery = models.IntegerField(blank=True, null=True)
-    patientSex = models.CharField(blank=True, max_length=6, choices=SEXCHOICES, default='male')
+    patientSex = models.CharField(blank=True, max_length=6)
     siteCountry = models.CharField(blank=True, max_length=120, null=True)
     siteRegion = models.CharField(blank=True, max_length=120, null=True)
     hospitalName = models.TextField(blank=True, null=True)
@@ -145,3 +145,4 @@ def pre_save_patient_information_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_patient_information_receiver, sender=PatientInformation)
+
