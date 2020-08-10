@@ -15,5 +15,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:25565/postgres</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="TvachaCareDatabase" uuid="733641bf-4325-4bdd-a094-eb9f0227514d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ls-7c7bb0365307cfe664f4d4afc15e92b72a0864a1.cbzyj83yqli8.us-west-2.rds.amazonaws.com:5432/postgres</jdbc-url>
+    </data-source>
   </component>
 </project>
